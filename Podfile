@@ -8,5 +8,8 @@ target 'PokeFirebase' do
   # Pods for PokeFirebase
   pod 'Firebase'
   pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
 
 end

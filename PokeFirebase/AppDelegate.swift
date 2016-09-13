@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 
+let pokemon = Pokemon()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
