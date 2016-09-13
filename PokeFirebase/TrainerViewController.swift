@@ -7,13 +7,46 @@
 //
 
 import UIKit
+import Firebase
+import TwitterKit
+import TwitterCore
+import Kingfisher
+
 
 class TrainerViewController: UIViewController {
+    
+    @IBOutlet weak var trainerHandlename: UILabel!
+    @IBOutlet weak var trainerImage: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Twitter Handlename
+        let store = Twitter.sharedInstance().sessionStore
+        let userID = store.session()?.userID
+        
+        let twitterClient = TWTRAPIClient(userID: userID)
+        
+        // Will change later
+        let twitterUserID = userID!
+        
+        twitterClient.loadUserWithID(twitterUserID) { (user, error) in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            
+            let handleName = user?.screenName
+            let photoUrl = user?.profileImageLargeURL
+            
+            self.trainerHandlename.text = "@\(handleName!)"
+            self.trainerImage.kf_setImageWithURL(NSURL(string: "\(photoUrl!)")!, placeholderImage: nil)
+            self.trainerImage.layer.cornerRadius = 50.0
+            self.trainerImage.layer.masksToBounds = true
+        }
     }
 
     override func didReceiveMemoryWarning() {

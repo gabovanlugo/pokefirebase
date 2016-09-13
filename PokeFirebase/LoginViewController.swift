@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import TwitterKit
 
 class LoginViewController: UIViewController {
 
@@ -14,6 +17,41 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        let loginButton = TWTRLogInButton { (session, error) in
+            
+            if session != nil {
+                let authToken = session?.authToken
+                let secret = session?.authTokenSecret
+                
+                // Firebase Twitter Auth
+                let credential = FIRTwitterAuthProvider.credentialWithToken(authToken!, secret: secret!)
+                FIRAuth.auth()?.signInWithCredential(credential, completion: { (user, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    
+                    print("User logged in with Twitter.")
+                    print(session?.userName)
+                    
+                    // Segue to Main Controller
+                    self.performSegueWithIdentifier("Show Main", sender: nil)
+                    
+                    
+                })
+                
+                
+            } else {
+                if error != nil {
+                    print(error)
+                    return
+                }
+            }
+        }
+        
+        loginButton.center = self.view.center
+        self.view.addSubview(loginButton)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,7 +60,7 @@ class LoginViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -30,6 +68,6 @@ class LoginViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }

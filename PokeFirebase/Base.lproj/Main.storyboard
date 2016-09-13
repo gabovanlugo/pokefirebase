@@ -24,17 +24,13 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3S-S7-AKT">
-                                <rect key="frame" x="142" y="220" width="37" height="30"/>
-                                <state key="normal" title="Enter"/>
-                                <connections>
-                                    <segue destination="Blq-sS-ues" kind="show" id="TJX-Gm-kqr"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <segue destination="Blq-sS-ues" kind="show" identifier="Show Main" id="Ijp-ie-53m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UcC-vM-Cyl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -202,7 +198,7 @@
                                     <constraint firstAttribute="height" constant="100" id="Cvn-Si-CMq"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@gabovanlugo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqy-ES-78V">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kqy-ES-78V">
                                 <rect key="frame" x="16" y="202" width="288" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="IAd-Gc-0uD"/>
@@ -280,6 +276,10 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="trainerHandlename" destination="Kqy-ES-78V" id="rxA-Hc-Qie"/>
+                        <outlet property="trainerImage" destination="C0U-uu-MAC" id="GXM-cB-Csc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hau-uo-4gA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

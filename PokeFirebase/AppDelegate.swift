@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import Fabric
+import TwitterCore
+import TwitterKit
 
 let pokemon = Pokemon()
 
@@ -16,9 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        Twitter.sharedInstance().startWithConsumerKey("E5BcQJPC2ejZx4edtunHjB1Tl", consumerSecret: "fubecmOVqWxRk68C9v1Ofa1YgMpHGGpWKlz3ChsSB51gGaElh2")
+        Fabric.with([Twitter.self])
+        
         FIRApp.configure()
         return true
     }

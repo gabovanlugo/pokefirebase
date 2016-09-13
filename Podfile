@@ -9,7 +9,11 @@ target 'PokeFirebase' do
   pod 'Firebase'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  
+
+  pod 'Fabric'
+  pod 'TwitterKit'
+
   pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift2'
+  pod 'Kingfisher', '~> 2.4'
 
 end
