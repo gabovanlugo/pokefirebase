@@ -18,6 +18,7 @@
 		05756D1D1D875FD700F22EEE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05756D1B1D875FD700F22EEE /* LaunchScreen.storyboard */; };
 		05DBEAFF1D879B43000C202B /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBEAFE1D879B43000C202B /* Util.swift */; };
 		05DBEB011D87A925000C202B /* TrainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DBEB001D87A925000C202B /* TrainerViewController.swift */; };
+		05FA25A21D88CE73008E2419 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FA25A11D88CE73008E2419 /* LogItem.swift */; };
 		69BAB9C17722D10503199CBD /* Pods_PokeFirebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FC3C156240FD07A1F43A8B /* Pods_PokeFirebase.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		05756D1E1D875FD700F22EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05DBEAFE1D879B43000C202B /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		05DBEB001D87A925000C202B /* TrainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainerViewController.swift; sourceTree = "<group>"; };
+		05FA25A11D88CE73008E2419 /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		138F4A91ADFD084F380BBA10 /* Pods-PokeFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PokeFirebase/Pods-PokeFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		40FC3C156240FD07A1F43A8B /* Pods_PokeFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PokeFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FF30778C34FB7B217E82CA8 /* Pods-PokeFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PokeFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-PokeFirebase/Pods-PokeFirebase.release.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				05756D1E1D875FD700F22EEE /* Info.plist */,
 				0533BE131D876EB0001FB7AA /* GoogleService-Info.plist */,
 				055CBB421D87733400D05736 /* FindViewController.swift */,
+				05FA25A11D88CE73008E2419 /* LogItem.swift */,
 			);
 			path = PokeFirebase;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				055CBB451D878D3D00D05736 /* Pokemon.swift in Sources */,
+				05FA25A21D88CE73008E2419 /* LogItem.swift in Sources */,
 				05DBEAFF1D879B43000C202B /* Util.swift in Sources */,
 				05DBEB011D87A925000C202B /* TrainerViewController.swift in Sources */,
 				055CBB3D1D87727E00D05736 /* MainViewController.swift in Sources */,

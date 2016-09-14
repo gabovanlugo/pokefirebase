@@ -11,18 +11,20 @@ import Spring
 import Firebase
 
 class MainViewController: UIViewController {
+    
+    let rootRef = FIRDatabase.database().reference()
+    var logItems = [LogItem]()
+    
+    @IBOutlet weak var stageCollectionView: UICollectionView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        observeAdded()
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillLayoutSubviews() {
@@ -30,39 +32,88 @@ class MainViewController: UIViewController {
     }
     
     
-    @IBOutlet weak var stageCollectionView: UICollectionView!
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func observeAdded() {
+        
+        let logRef = rootRef.child("log")
+        
+        logRef.observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            let logItem = LogItem()
+            
+            logItem.name = snapshot.value!["name"] as! String
+            logItem.pokemonId = snapshot.value!["pokemonId"] as! Int
+            logItem.twitterId = snapshot.value!["twitterId"] as! String
+            logItem.uid = snapshot.value!["uid"] as! String
+            
+            // Photo URL Manipulation
+            let insecureUrl = snapshot.value!["photoUrl"] as! String
+            let secureUrl = insecureUrl.stringByReplacingOccurrencesOfString("http", withString: "https")
+            
+            let biggerPhotoUrl = secureUrl.stringByReplacingOccurrencesOfString("_normal.", withString: "_bigger.")
+            
+            logItem.photoUrl = biggerPhotoUrl
+            
+            
+            
+            
+            self.stageCollectionView.performBatchUpdates({
+                
+                self.logItems.append(logItem)
+                
+                let last = self.stageCollectionView.numberOfItemsInSection(0)
+                let lastIndexPath = NSIndexPath(forItem: last, inSection: 0)
+                
+                self.stageCollectionView.insertItemsAtIndexPaths([lastIndexPath])
+                
+                if last > 0 {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let indexPath = NSIndexPath(forItem: self.stageCollectionView.numberOfItemsInSection(0) -  1, inSection: 0)
+                        self.stageCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+                    })
+                }
+                
+                
+                }, completion: { (finished: Bool) in
+                    self.stageCollectionView.reloadData()
+            })
+            
+            
+        }, withCancelBlock: nil)
+        
     }
-    */
-
+    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Sample
-        return 1
+        
+        return logItems.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! MainCollectionViewCell
+        let i = indexPath.row
   
         // Customize UI
         shadowElement(cell.pokemonImage, color: "000000", opacity: 0.2, radius: 10.0)
         shadowElement(cell, color: "000000", opacity: 0.1, radius: 5.0)
         cell.layer.masksToBounds = false
         cell.pokemonImage.contentMode = UIViewContentMode.ScaleAspectFit
+        cell.trainerImage.contentMode = UIViewContentMode.ScaleAspectFit
+        cell.trainerImage.layer.cornerRadius = 30.0
+        cell.trainerImage.layer.masksToBounds = true
+        
         
         // Read DataSource
+        
+        cell.trainerLabel.text = logItems[i].name
+        cell.pokemonLabel.text = pokemon.get(logItems[i].pokemonId - 1)
+        
+        cell.trainerImage.kf_setImageWithURL(NSURL(string: "\(logItems[i].photoUrl)")!, placeholderImage: nil)
+        
+        cell.pokemonImage.image = UIImage(named: "\(logItems[i].pokemonId)")
         
         return cell
     }
@@ -77,6 +128,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var trainerImage: UIImageView!
+    @IBOutlet weak var trainerLabel: UILabel!
+    
     @IBOutlet weak var pokemonImage: UIImageView!
     @IBOutlet weak var pokemonLabel: UILabel!
 }

@@ -122,6 +122,7 @@
                                             <outlet property="pokemonImage" destination="v9I-dd-0Ns" id="y4e-Xi-hWR"/>
                                             <outlet property="pokemonLabel" destination="Jsd-oE-Azm" id="7Wo-md-uIK"/>
                                             <outlet property="trainerImage" destination="jvN-yC-xXO" id="d8U-2K-iYC"/>
+                                            <outlet property="trainerLabel" destination="GTZ-yt-sIm" id="24F-a9-Xkl"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
