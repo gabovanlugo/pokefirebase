@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Spring
 
 class FindViewController: UIViewController {
     
@@ -45,12 +46,22 @@ class FindViewController: UIViewController {
         }
         
     }
-
-    @IBOutlet weak var foundPokemonImage: UIImageView!
     
+    @IBOutlet weak var findView: SpringView!
+    @IBOutlet weak var resultView: SpringView!
+    
+
+    @IBOutlet weak var foundPokemonImage: SpringImageView!
     @IBOutlet weak var foundPokemonLabel: UILabel!
     
     @IBAction func find(sender: AnyObject) {
+        findView.animation = "fadeOut"
+        findView.animate()
+        
+        resultView.hidden = false
+        resultView.animation = "fadeIn"
+        resultView.animate()
+        
         find()
     }
     
@@ -60,7 +71,7 @@ class FindViewController: UIViewController {
     func find() {
         print("Searching Pókemon...")
         
-        let delay = 0.5 * Double(NSEC_PER_SEC)
+        let delay = 2.0 * Double(NSEC_PER_SEC)
         let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
         
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -69,6 +80,9 @@ class FindViewController: UIViewController {
             self.foundPokemonImage.image = UIImage(named: "\(id)")
             self.foundPokemonImage.contentMode = UIViewContentMode.ScaleAspectFit
             self.foundPokemonLabel.text = pokemon.get(id-1)
+            
+            self.foundPokemonImage.animation = "pop"
+            self.foundPokemonImage.animate()
             
             print("Got \(id)");
             
@@ -113,15 +127,5 @@ class FindViewController: UIViewController {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

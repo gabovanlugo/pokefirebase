@@ -22,9 +22,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var stageCollectionView: UICollectionView!
     
-    @IBAction func trainerButton(sender: AnyObject) {
-        //
-    }
+    
     
     
 

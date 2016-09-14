@@ -18,14 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkW-pn-USc">
-                                <rect key="frame" x="139" y="171" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YkW-pn-USc">
+                                <rect key="frame" x="115" y="155" width="90" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NcZ-lV-zKP"/>
+                                    <constraint firstAttribute="width" constant="90" id="qDT-qb-HZR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YkW-pn-USc" firstAttribute="top" secondItem="Ghw-R0-4kn" secondAttribute="bottom" constant="135" id="9Ap-yE-AwO"/>
+                            <constraint firstItem="YkW-pn-USc" firstAttribute="centerX" secondItem="xXo-eL-z1q" secondAttribute="centerX" id="FTM-ZM-R86"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
@@ -141,11 +149,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BtK-yt-RFO">
-                        <barButtonItem key="leftBarButtonItem" title="Trainer" id="TrL-CI-HAq">
-                            <connections>
-                                <action selector="trainerButton:" destination="gfJ-Or-tY3" id="UoK-G1-gBZ"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="1di-Wu-6oc">
                             <view key="customView" contentMode="scaleToFill" id="nk7-7g-LWn">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
@@ -312,51 +315,70 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-OS-WRa">
-                                <rect key="frame" x="110" y="114" width="100" height="100"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EIa-9a-MuG" userLabel="Find" customClass="SpringView" customModule="Spring">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79c-pc-Svt">
+                                        <rect key="frame" x="98" y="217" width="124" height="45"/>
+                                        <color key="backgroundColor" red="0.54117647059999996" green="0.76862745099999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Find"/>
+                                        <connections>
+                                            <action selector="find:" destination="hym-2P-uHw" eventType="touchUpInside" id="1b9-c8-nyn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pi-lD-su9" userLabel="Result" customClass="SpringView" customModule="Spring">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-OS-WRa" customClass="SpringImageView" customModule="Spring">
+                                        <rect key="frame" x="110" y="114" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="OzD-Rs-u48"/>
+                                            <constraint firstAttribute="height" constant="100" id="s9E-x7-wah"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="finding..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-x5-wSf">
+                                        <rect key="frame" x="16" y="222" width="288" height="33"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="0k1-Cl-nN2"/>
-                                    <constraint firstAttribute="width" constant="100" id="Bc9-gb-QcA"/>
+                                    <constraint firstAttribute="trailing" secondItem="O2d-x5-wSf" secondAttribute="trailing" constant="16" id="2kV-A8-cdy"/>
+                                    <constraint firstItem="uwE-OS-WRa" firstAttribute="centerX" secondItem="0Pi-lD-su9" secondAttribute="centerX" id="8Yf-rU-5z2"/>
+                                    <constraint firstItem="uwE-OS-WRa" firstAttribute="top" secondItem="0Pi-lD-su9" secondAttribute="top" constant="114" id="JrW-vR-9GO"/>
+                                    <constraint firstItem="O2d-x5-wSf" firstAttribute="centerX" secondItem="0Pi-lD-su9" secondAttribute="centerX" id="RaS-TI-MCu"/>
+                                    <constraint firstItem="O2d-x5-wSf" firstAttribute="leading" secondItem="0Pi-lD-su9" secondAttribute="leading" constant="16" id="UyH-h9-K2t"/>
+                                    <constraint firstItem="O2d-x5-wSf" firstAttribute="top" secondItem="uwE-OS-WRa" secondAttribute="bottom" constant="8" id="ktZ-pQ-hbM"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79c-pc-Svt">
-                                <rect key="frame" x="16" y="415" width="288" height="45"/>
-                                <color key="backgroundColor" red="0.54117647059999996" green="0.76862745099999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="sne-m2-DEY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Find"/>
-                                <connections>
-                                    <action selector="find:" destination="hym-2P-uHw" eventType="touchUpInside" id="1b9-c8-nyn"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pokemon_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-x5-wSf">
-                                <rect key="frame" x="16" y="222" width="288" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="zNS-Ak-cpl"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autohide" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="O2d-x5-wSf" firstAttribute="top" secondItem="uwE-OS-WRa" secondAttribute="bottom" constant="8" id="16K-CR-MJu"/>
-                            <constraint firstItem="O2d-x5-wSf" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leadingMargin" id="St5-2w-m96"/>
-                            <constraint firstItem="uwE-OS-WRa" firstAttribute="centerX" secondItem="Vp3-qz-snv" secondAttribute="centerX" id="ZXN-9c-Gnp"/>
-                            <constraint firstItem="79c-pc-Svt" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leadingMargin" id="cGf-mH-EGi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="O2d-x5-wSf" secondAttribute="trailing" id="dJD-Kg-aaG"/>
-                            <constraint firstItem="79c-pc-Svt" firstAttribute="trailing" secondItem="Vp3-qz-snv" secondAttribute="trailingMargin" id="mKH-3V-cfZ"/>
-                            <constraint firstItem="FNj-HM-oWL" firstAttribute="top" secondItem="79c-pc-Svt" secondAttribute="bottom" constant="20" id="oDk-tp-yHr"/>
-                            <constraint firstItem="uwE-OS-WRa" firstAttribute="top" secondItem="jbL-J3-FhT" secondAttribute="bottom" constant="50" id="qqe-kF-KgI"/>
+                            <constraint firstAttribute="trailing" secondItem="0Pi-lD-su9" secondAttribute="trailing" id="ABT-fE-DbV"/>
+                            <constraint firstItem="0Pi-lD-su9" firstAttribute="top" secondItem="Vp3-qz-snv" secondAttribute="top" id="AEb-L4-cBz"/>
+                            <constraint firstItem="EIa-9a-MuG" firstAttribute="top" secondItem="Vp3-qz-snv" secondAttribute="top" id="MTG-xR-Qc4"/>
+                            <constraint firstAttribute="trailing" secondItem="EIa-9a-MuG" secondAttribute="trailing" id="MeI-ML-lH2"/>
+                            <constraint firstItem="FNj-HM-oWL" firstAttribute="top" secondItem="EIa-9a-MuG" secondAttribute="bottom" id="OKh-Tb-tAw"/>
+                            <constraint firstItem="0Pi-lD-su9" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leading" id="VXK-fZ-mbC"/>
+                            <constraint firstItem="EIa-9a-MuG" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leading" id="gF1-qr-Ebz"/>
+                            <constraint firstItem="FNj-HM-oWL" firstAttribute="top" secondItem="0Pi-lD-su9" secondAttribute="bottom" id="wLl-c2-Ere"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="foundPokemonImage" destination="uwE-OS-WRa" id="MFR-0e-jzv"/>
+                        <outlet property="findView" destination="EIa-9a-MuG" id="ew7-sW-7Fq"/>
+                        <outlet property="foundPokemonImage" destination="uwE-OS-WRa" id="43V-3g-saX"/>
                         <outlet property="foundPokemonLabel" destination="O2d-x5-wSf" id="NDw-kB-LK9"/>
+                        <outlet property="resultView" destination="0Pi-lD-su9" id="RO6-vw-oAg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66p-yi-ygs" userLabel="First Responder" sceneMemberID="firstResponder"/>
