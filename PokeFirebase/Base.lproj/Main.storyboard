@@ -143,7 +143,7 @@
                     <navigationItem key="navigationItem" id="BtK-yt-RFO">
                         <barButtonItem key="leftBarButtonItem" title="Trainer" id="TrL-CI-HAq">
                             <connections>
-                                <segue destination="hwl-wi-sgG" kind="show" id="yWu-ug-D8D"/>
+                                <action selector="trainerButton:" destination="gfJ-Or-tY3" id="UoK-G1-gBZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="1di-Wu-6oc">
@@ -174,6 +174,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="stageCollectionView" destination="owU-J9-HYO" id="axt-EY-tKx"/>
+                        <segue destination="hwl-wi-sgG" kind="show" identifier="Show Trainer" id="z3P-fD-520"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kxb-Wy-2Kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -226,7 +227,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-cp-8eE">
-                                                    <rect key="frame" x="8" y="8" width="80" height="80"/>
+                                                    <rect key="frame" x="23" y="23" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="ENM-Ld-d0y"/>
+                                                        <constraint firstAttribute="height" constant="50" id="bkW-4w-s7u"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -240,6 +245,14 @@
                                             <constraint firstItem="5Lf-cp-8eE" firstAttribute="leading" secondItem="65b-8F-k5l" secondAttribute="leadingMargin" id="v9u-Qi-4Lk"/>
                                             <constraint firstItem="5Lf-cp-8eE" firstAttribute="centerX" secondItem="65b-8F-k5l" secondAttribute="centerX" id="yKS-pN-SXX"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Sjc-0i-TeQ"/>
+                                                <exclude reference="TYM-jJ-J7a"/>
+                                                <exclude reference="m6w-JS-Z4F"/>
+                                                <exclude reference="v9u-Qi-4Lk"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="capturedImage" destination="5Lf-cp-8eE" id="v5Q-NZ-L7R"/>
                                         </connections>
@@ -278,6 +291,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="pokemonCollectionView" destination="yXe-Ab-4tG" id="ITT-3X-Oe6"/>
                         <outlet property="trainerHandlename" destination="Kqy-ES-78V" id="rxA-Hc-Qie"/>
                         <outlet property="trainerImage" destination="C0U-uu-MAC" id="GXM-cB-Csc"/>
                     </connections>
@@ -298,18 +312,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-OS-WRa">
-                                <rect key="frame" x="110" y="151" width="100" height="100"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-OS-WRa">
+                                <rect key="frame" x="110" y="114" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="0k1-Cl-nN2"/>
+                                    <constraint firstAttribute="width" constant="100" id="Bc9-gb-QcA"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="pokemon_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-x5-wSf">
-                                <rect key="frame" x="61" y="259" width="199" height="50"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79c-pc-Svt">
-                                <rect key="frame" x="20" y="418" width="280" height="42"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79c-pc-Svt">
+                                <rect key="frame" x="16" y="415" width="288" height="45"/>
                                 <color key="backgroundColor" red="0.54117647059999996" green="0.76862745099999996" blue="0.2470588235" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="sne-m2-DEY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Find"/>
@@ -317,8 +332,27 @@
                                     <action selector="find:" destination="hym-2P-uHw" eventType="touchUpInside" id="1b9-c8-nyn"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pokemon_name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2d-x5-wSf">
+                                <rect key="frame" x="16" y="222" width="288" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="zNS-Ak-cpl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="O2d-x5-wSf" firstAttribute="top" secondItem="uwE-OS-WRa" secondAttribute="bottom" constant="8" id="16K-CR-MJu"/>
+                            <constraint firstItem="O2d-x5-wSf" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leadingMargin" id="St5-2w-m96"/>
+                            <constraint firstItem="uwE-OS-WRa" firstAttribute="centerX" secondItem="Vp3-qz-snv" secondAttribute="centerX" id="ZXN-9c-Gnp"/>
+                            <constraint firstItem="79c-pc-Svt" firstAttribute="leading" secondItem="Vp3-qz-snv" secondAttribute="leadingMargin" id="cGf-mH-EGi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O2d-x5-wSf" secondAttribute="trailing" id="dJD-Kg-aaG"/>
+                            <constraint firstItem="79c-pc-Svt" firstAttribute="trailing" secondItem="Vp3-qz-snv" secondAttribute="trailingMargin" id="mKH-3V-cfZ"/>
+                            <constraint firstItem="FNj-HM-oWL" firstAttribute="top" secondItem="79c-pc-Svt" secondAttribute="bottom" constant="20" id="oDk-tp-yHr"/>
+                            <constraint firstItem="uwE-OS-WRa" firstAttribute="top" secondItem="jbL-J3-FhT" secondAttribute="bottom" constant="50" id="qqe-kF-KgI"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="foundPokemonImage" destination="uwE-OS-WRa" id="MFR-0e-jzv"/>

@@ -15,7 +15,17 @@ class MainViewController: UIViewController {
     let rootRef = FIRDatabase.database().reference()
     var logItems = [LogItem]()
     
+    var currentUid = ""
+    var currentTwitterId = ""
+    
+    var capturedRef = FIRDatabaseReference()
+    
     @IBOutlet weak var stageCollectionView: UICollectionView!
+    
+    @IBAction func trainerButton(sender: AnyObject) {
+        //
+    }
+    
     
 
     override func viewDidLoad() {
@@ -23,8 +33,15 @@ class MainViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        
         observeAdded()
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        print("Here, again!")
+        
+        capturedRef.removeAllObservers()
     }
     
     override func viewWillLayoutSubviews() {
@@ -82,6 +99,28 @@ class MainViewController: UIViewController {
         
     }
     
+    
+    
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == "Show Trainer" {
+            let vc = segue.destinationViewController as! TrainerViewController
+            
+            vc.twitterUserID = currentTwitterId
+            vc.uid = currentUid
+            
+            capturedRef = rootRef.child("users/\(currentUid)/captures")
+            
+            vc.capturedRef = capturedRef
+            
+        }
+        
+    }
+
+    
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -121,6 +160,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let cellHeight = 100
         return CGSizeMake(collectionView.bounds.size.width - 20.00, CGFloat(cellHeight))
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let i = indexPath.row
+        
+        currentTwitterId = logItems[i].twitterId
+        currentUid = logItems[i].uid
+        
+        performSegueWithIdentifier("Show Trainer", sender: self)
     }
     
 }

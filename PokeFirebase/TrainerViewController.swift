@@ -15,8 +15,26 @@ import Kingfisher
 
 class TrainerViewController: UIViewController {
     
+    var twitterUserID = "" {
+        didSet {
+            print(twitterUserID)
+        }
+    }
+    var uid = "" {
+        didSet {
+            print(uid)
+        }
+    }
+    
+    var capturedRef = FIRDatabaseReference()
+    
+    var pokemonArray = [Int]()
+    
     @IBOutlet weak var trainerHandlename: UILabel!
     @IBOutlet weak var trainerImage: UIImageView!
+    
+    @IBOutlet weak var pokemonCollectionView: UICollectionView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +46,6 @@ class TrainerViewController: UIViewController {
         let userID = store.session()?.userID
         
         let twitterClient = TWTRAPIClient(userID: userID)
-        
-        // Will change later
-        let twitterUserID = userID!
         
         twitterClient.loadUserWithID(twitterUserID) { (user, error) in
             
@@ -47,23 +62,41 @@ class TrainerViewController: UIViewController {
             self.trainerImage.layer.cornerRadius = 50.0
             self.trainerImage.layer.masksToBounds = true
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        observeChanges()
     }
     
+    func observeChanges() {
+        
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        capturedRef.observeEventType(.Value, withBlock: { (snapshot) in
+            
+            print("Changed!")
+            self.pokemonArray = []
+            
+            if snapshot.value is NSNull {
+                print("Empty Snapshot")
+                self.pokemonCollectionView.reloadData()
+                return
+            }
+            
+            for child in snapshot.children {
+                
+                let childSnapshot = snapshot.childSnapshotForPath(child.key)
+                let pokemonId = childSnapshot.value!["pokemonId"] as! Int
+                
+                self.pokemonArray.append(pokemonId)
+            }
+            
+            self.pokemonArray = self.pokemonArray.reverse()
+            self.pokemonCollectionView.reloadData()
+            
+        })
+        
+        
     }
-    */
+
+   
 
 }
 
@@ -71,22 +104,25 @@ extension TrainerViewController: UICollectionViewDataSource, UICollectionViewDel
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        // Sample
-        return 10
-        
+        return pokemonArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("capturedCell", forIndexPath: indexPath) as! CapturedCollectionViewCell
         
+        let i = indexPath.row
+        
         // Customize UI
         cell.layer.masksToBounds = false
         cell.layer.borderColor = UIColor(hex: "F2F2F2").CGColor
         cell.layer.borderWidth = 0.5
+        cell.capturedImage.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        let pokemonId = pokemonArray[i]
         
         // Read Datasource
-        cell.capturedImage.contentMode = UIViewContentMode.ScaleAspectFit
+        cell.capturedImage.image = UIImage(named: "\(pokemonId)" )
+        
         
         return cell
     }
